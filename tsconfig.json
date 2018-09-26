@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng2-social-auth": [
+        "dist/ng2-social-auth"
+      ],
+      "ng2-social-auth/*": [
+        "dist/ng2-social-auth/*"
+      ]
+    }
   }
 }

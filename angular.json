@@ -121,6 +121,41 @@
           }
         }
       }
+    },
+    "ng2-social-auth": {
+      "root": "projects/ng2-social-auth",
+      "sourceRoot": "projects/ng2-social-auth/src",
+      "projectType": "library",
+      "prefix": "auth",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng2-social-auth/tsconfig.lib.json",
+            "project": "projects/ng2-social-auth/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng2-social-auth/src/test.ts",
+            "tsConfig": "projects/ng2-social-auth/tsconfig.spec.json",
+            "karmaConfig": "projects/ng2-social-auth/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng2-social-auth/tsconfig.lib.json",
+              "projects/ng2-social-auth/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-social-auth"
