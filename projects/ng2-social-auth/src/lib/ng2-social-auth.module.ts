@@ -2,21 +2,14 @@
 import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 
 // Models
-import { IGoogleConfig } from './models/IGoogleConfig';
-import { IFacebookConfig } from './models/IFacebookConfig';
-import { IProvidersConfig } from './models/IProvidersConfig';
 import { CONFIG } from './models/config-injection-token';
+import { IProvidersConfig } from './models/IProvidersConfig';
 
 
 @NgModule({
 })
 export class Ng2SocialAuthModule {
-  static init(google: IGoogleConfig, facebook: IFacebookConfig): ModuleWithProviders {
-
-    const config: IProvidersConfig = {
-      facebook: facebook,
-      google: google
-    };
+  static init(config: IProvidersConfig): ModuleWithProviders {
 
     return {
       ngModule: Ng2SocialAuthModule,

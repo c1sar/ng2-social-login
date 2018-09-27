@@ -1,4 +1,4 @@
-import { Ng2SocialAuthService } from 'projects/ng2-social-auth/src/public_api';
+import { Ng2SocialAuthService, ProviderType } from 'projects/ng2-social-auth/src/public_api';
 import { Component } from '@angular/core';
 
 @Component({
@@ -17,5 +17,12 @@ export class AppComponent {
 
   loginFacebook() {
     console.log('Facebook');
+    this.socialAuthService.login(ProviderType.FACEBOOK).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  logOut() {
+    this.socialAuthService.logout().subscribe();
   }
 }
