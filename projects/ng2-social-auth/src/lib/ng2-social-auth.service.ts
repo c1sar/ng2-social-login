@@ -12,7 +12,7 @@ import { CONFIG } from './models/config-injection-token';
 import { ProviderType } from './models/provider-type.enum';
 import { IFacebookConfig } from './models/IFacebookConfig';
 import { IGoogleConfig } from './models/IGoogleConfig';
-import { ISocialUser } from './models/ISocialUser';
+import { IToken } from './models/IToken';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class Ng2SocialAuthService {
     }, {});
   }
 
-  login(provider: ProviderType): Observable<ISocialUser> {
+  login(provider: ProviderType): Observable<IToken> {
     this.currentProvider = provider;
     const socialProvider = this.providers[provider];
     return socialProvider ? socialProvider.login() : EMPTY;

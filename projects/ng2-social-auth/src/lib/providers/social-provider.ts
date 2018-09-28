@@ -2,7 +2,8 @@
 import { Observable } from 'rxjs';
 
 // Models
-import { ProviderType, ISocialUser } from '../../public_api';
+import { IToken } from '../models/IToken';
+import { ProviderType } from '../models/provider-type.enum';
 
 export abstract class SocialProvider {
 
@@ -20,10 +21,11 @@ export abstract class SocialProvider {
     script.src = src;
     script.async = true;
     script.onload = onload;
+    script.defer = true;
     document.head.appendChild(script);
   }
 
-  abstract login(): Observable<ISocialUser>;
+  abstract login(): Observable<IToken>;
 
   abstract logout(): Observable<any>;
 

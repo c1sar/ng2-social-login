@@ -8,7 +8,7 @@ import { SocialProvider } from './social-provider';
 // Models
 import { IGoogleConfig } from '../models/IGoogleConfig';
 import { ProviderType } from '../models/provider-type.enum';
-import { ISocialUser } from '../models/ISocialUser';
+import { IToken } from '../models/IToken';
 
 declare const gapi: any;
 
@@ -29,21 +29,15 @@ export class GoogleProvider extends SocialProvider {
     });
   }
 
-  login(): Observable<ISocialUser> {
-    return from(this.googleAuth.signIn({ prompt: 'select_account' })).pipe(
-      map(() => {
-        const profile = this.googleAuth.currentUser.get().getBasicProfile();
-        const accessToken = this.googleAuth.currentUser.get().getAuthResponse(true).access_token;
-        const idToken = this.googleAuth.currentUser.get().getAuthResponse(true).id_token;
-
-        return {
-          id: profile.getId(),
-          email: profile.getEmail(),
-          name: profile.getName(),
-          profileImg: profile.getImageUrl(),
-          accessToken: accessToken,
-          idToken: idToken
-        } as ISocialUser;
+  login(): Observable<IToken> {
+    if (!this.googleAuth) {
+      return new Observable(observer => {
+        observer.error('Google Api No loaded!');
+      });
+    }
+    return from(this.googleAuth.grantOfflineAccess()).pipe(
+      map(authResult => {
+        return { token: authResult['code'] };
       })
     );
   }

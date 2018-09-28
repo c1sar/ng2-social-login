@@ -6,6 +6,6 @@ export * from './lib/ng2-social-auth.service';
 export * from './lib/ng2-social-auth.module';
 export * from './lib/models/IFacebookConfig';
 export * from './lib/models/IGoogleConfig';
-export * from './lib/models/ISocialUser';
+export * from './lib/models/IToken';
 export * from './lib/models/IProvidersConfig';
 export * from './lib/models/provider-type.enum';

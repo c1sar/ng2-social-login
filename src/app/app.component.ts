@@ -13,6 +13,11 @@ export class AppComponent {
 
   loginGoogle() {
     console.log('Google');
+    this.socialAuthService.login(ProviderType.GOOGLE).subscribe((data) => {
+      console.log(data);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   loginFacebook() {
